@@ -6,6 +6,7 @@ const empRoute = require('./routes/empRoute');
 app.set('view engine', 'pug');
 app.set('views', './views');
 
+app.use(express.json());
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {

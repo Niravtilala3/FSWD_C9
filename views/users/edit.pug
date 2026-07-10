@@ -1,0 +1,16 @@
+html
+  head
+    title= title
+  body
+    h1 Edit User
+    form(action=`/users/${user._id}/update` method='post')
+      div
+        label(for='name') Name
+        input#name(type='text' name='name' value=user.name required)
+      div
+        label(for='address') Address
+        input#address(type='text' name='address' value=user.address required)
+      div
+        button(type='submit') Update
+    p
+      a(href=`/users/${user._id}`) Back to details

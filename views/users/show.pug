@@ -1,0 +1,18 @@
+html
+  head
+    title= title
+  body
+    h1 User Details
+    p
+      strong Name: 
+      span= user.name
+    p
+      strong Address: 
+      span= user.address
+    p
+      a(href=`/users/${user._id}/edit`) Edit
+    p
+      form(action=`/users/${user._id}/delete` method='post')
+        button(type='submit') Delete
+    p
+      a(href='/users') Back to users

@@ -1,0 +1,16 @@
+html
+  head
+    title= title
+  body
+    h1 Create User
+    form(action='/users' method='post')
+      div
+        label(for='name') Name
+        input#name(type='text' name='name' required)
+      div
+        label(for='address') Address
+        input#address(type='text' name='address' required)
+      div
+        button(type='submit') Save
+    p
+      a(href='/users') Back to users

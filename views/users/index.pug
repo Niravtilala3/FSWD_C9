@@ -1,0 +1,31 @@
+html
+  head
+    title= title
+  body
+    h1 User CRUD Pages
+    p
+      a(href='/') Back home
+    p
+      a(href='/users/new') Create new user
+
+    if users.length
+      table(border='1' cellpadding='8')
+        thead
+          tr
+            th Name
+            th Address
+            th Actions
+        tbody
+          each user in users
+            tr
+              td= user.name
+              td= user.address
+              td
+                a(href=`/users/${user._id}`) View
+                |  |
+                a(href=`/users/${user._id}/edit`) Edit
+                |  |
+                form(action=`/users/${user._id}/delete` method='post' style='display:inline;')
+                  button(type='submit') Delete
+    else
+      p No users found.

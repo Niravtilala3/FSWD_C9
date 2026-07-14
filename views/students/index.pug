@@ -1,0 +1,9 @@
+html
+    head
+        title Students List
+    body
+        h1 Students List
+        ul
+            each student in students
+                li= student.name + " - " + student.email + " -  " + student.age 
+                a(href="/students/" + student._id) View Details

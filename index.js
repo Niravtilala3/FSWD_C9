@@ -7,6 +7,7 @@ const mongoUri = 'mongodb://127.0.0.1:27017/FSWD_C9';
 const userRoute = require('./routes/userRoute');
 const empRoute = require('./routes/empRoute');
 const userViewRoute = require('./routes/userViewRoute');
+const studentRoute = require('./routes/studnetRoute');
 
 app.set('view engine', 'pug');
 app.set('views', './views');
@@ -32,6 +33,7 @@ app.post('/', (req, res) => {
 app.use('/user', userRoute);
 app.use('/users', userViewRoute);
 app.use('/emp', empRoute);
+app.use('/students', studentRoute);
 
 
 

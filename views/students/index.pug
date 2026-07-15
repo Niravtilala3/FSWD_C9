@@ -3,7 +3,14 @@ html
         title Students List
     body
         h1 Students List
-        ul
+        div
             each student in students
-                li= student.name + " - " + student.email + " -  " + student.age 
-                a(href="/students/" + student._id) View Details
+                div
+                    p= student.name + " - " + student.email + " -  " + student.age 
+                    div
+                        a(href="/students/" + student._id) View Details
+                    div
+                        a(href="/students/" + student._id + "/edit") Edit
+                    div 
+                        form(action="/students/" + student._id + "/delete", method="POST")
+                            button(type="submit") Delete

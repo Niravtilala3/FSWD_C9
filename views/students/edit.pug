@@ -1,0 +1,17 @@
+html
+    head
+        title Edit Student
+    body
+        h1 Edit Student
+        form(action="/students/" + student._id + "/edit", method="POST") 
+            div
+                label(for="name") Name:
+                input(type="text", name="name", id="name", value=student.name)
+            div
+                label(for="email") Email:
+                input(type="email", name="email", id="email", value=student.email)
+            div
+                label(for="age") Age:
+                input(type="number", name="age", id="age", value=student.age)
+            div
+                button(type="submit") Update Student    

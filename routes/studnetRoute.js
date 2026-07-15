@@ -36,4 +36,38 @@ router.get("/:id", async (req, res) => {
     res.render("students/show", { student }); 
 });
 
+router.get("/:id/edit", async (req, res) => {
+    const student = await Student.findById(req.params.id);
+    if (!student) {
+        return res.status(404).send("Student not found");
+    }
+    res.render("students/edit", { student });
+});
+
+// PUT (update) a student by ID
+router.post("/:id/edit", async (req, res) => {
+    // const { name, email, age } = req.body;
+    const student = await Student.findByIdAndUpdate(
+        req.params.id,
+        {
+            name: req.body.name,
+            email: req.body.email,
+            age: req.body.age
+        }
+    );
+    if (!student) {
+        return res.status(404).send("Student not found");
+    }
+    res.redirect("/students");
+});
+
+// DELETE a student by ID
+router.post("/:id/delete", async (req, res) => {
+    const student = await Student.findByIdAndDelete(req.params.id);
+    if (!student) {
+        return res.status(404).send("Student not found");
+    }
+    res.redirect("/students");
+});
+
 module.exports = router;

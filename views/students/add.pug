@@ -4,13 +4,14 @@ html
     body
         h1 Add Student
         form(action="/students" method="POST")
-            label(for="name") Name:
-            input(type="text" name="name" required)
-            br
-            label(for="email") Email:
-            input(type="email" name="email" required)
-            br
-            label(for="age") Age:
-            input(type="number" name="age" required)
-            br
-            button(type="submit") Add Student
+            div
+                label(for="name") Name:
+                input(type="text" name="name" required)
+            div
+                label(for="email") Email:
+                input(type="email" name="email" required)
+            div
+                label(for="age") Age:
+                input(type="number" name="age" required)
+            div
+                button(type="submit") Add Student

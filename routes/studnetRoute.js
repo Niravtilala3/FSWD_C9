@@ -1,73 +1,19 @@
 const express = require("express");
 const router = express.Router();
 const Student = require("../models/Student");
+const studentController = require("../controllers/studentController");
 
 // GET all students
-router.get("/", async (req, res) => {
-    const students = await Student.find();
-    res.render("students/index", { students });
-    //res.json(students);
-});
-
-router.get("/add", (req, res) => {
-    res.render("students/add");
-});
-
+router.get("/", studentController.getAllStudents);
+router.get("/add",studentController.getAddStudentForm);
 // POST a new student
-router.post("/", async (req, res) => {
-    // const { name, email, age } = req.body;
-    
-    // const newStudent = new Student({ name, email, age });
-    // await newStudent.save();
-    const student = await Student.create({
-        name: req.body.name,
-        email: req.body.email,
-        age: req.body.age   
-    });
-    res.redirect("/students");
-});
-
+router.post("/", studentController.addStudent);
 // GET a student by ID
-router.get("/:id", async (req, res) => {
-    const student = await Student.findById(req.params.id);
-    if (!student) {
-        return res.status(404).send("Student not found");
-    }
-    res.render("students/show", { student }); 
-});
-
-router.get("/:id/edit", async (req, res) => {
-    const student = await Student.findById(req.params.id);
-    if (!student) {
-        return res.status(404).send("Student not found");
-    }
-    res.render("students/edit", { student });
-});
-
+router.get("/:id", studentController.getStudentById);
+router.get("/:id/edit", studentController.getEditStudentForm);
 // PUT (update) a student by ID
-router.post("/:id/edit", async (req, res) => {
-    // const { name, email, age } = req.body;
-    const student = await Student.findByIdAndUpdate(
-        req.params.id,
-        {
-            name: req.body.name,
-            email: req.body.email,
-            age: req.body.age
-        }
-    );
-    if (!student) {
-        return res.status(404).send("Student not found");
-    }
-    res.redirect("/students");
-});
-
+router.post("/:id/edit", studentController.updateStudent);
 // DELETE a student by ID
-router.post("/:id/delete", async (req, res) => {
-    const student = await Student.findByIdAndDelete(req.params.id);
-    if (!student) {
-        return res.status(404).send("Student not found");
-    }
-    res.redirect("/students");
-});
+router.post("/:id/delete",studentController.deleteStudent);
 
 module.exports = router;
